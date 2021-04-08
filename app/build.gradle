@@ -10,7 +10,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.bookreview"
+        applicationId "com.foodtipper"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -45,6 +45,8 @@ dependencies {
     implementation kotlinDependencies.stdlib
 
     implementation daggerDependencies.dagger
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     kapt daggerDependencies.compiler
     api daggerDependencies.annotation
 
