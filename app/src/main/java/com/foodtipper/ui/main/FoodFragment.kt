@@ -1,5 +1,7 @@
 package com.foodtipper.ui.main
 
+import android.content.Intent
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -10,7 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.foodtipper.R
-import com.foodtipper.ui.main.dummy.DummyContent
+import com.foodtipper.model.FoodItem
+import com.foodtipper.ui.detail.DetailActivity
 
 /**
  * A fragment representing a list of Items.
@@ -31,6 +34,8 @@ class FoodFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+       var list =  listOf(FoodItem("asd","asd","asd"),FoodItem("asd","asd","asd"),FoodItem("asd","asd","asd"),FoodItem("asd","asd","asd"))
         val view = inflater.inflate(R.layout.fragment_food_list, container, false)
 
         // Set the adapter
@@ -40,17 +45,22 @@ class FoodFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyFoodRecyclerViewAdapter(DummyContent.ITEMS,  ::onItemClick )
+                adapter = MyFoodRecyclerViewAdapter(list,  ::onItemClick )
             }
         }
         return view
     }
 
-    fun onItemClick (id: String) {
-        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+    fun onItemClick (id: String) {      
+        val intent = Intent(activity , DetailActivity::class.java)
+        intent.putExtra(KEY_FOOD, id)
+        startActivity(intent)
+        
     }
 
     companion object {
+        const val KEY_FOOD = "KEY_FOOD"
+        
 
         // TODO: Customize parameter argument names
         const val ARG_COLUMN_COUNT = "column-count"

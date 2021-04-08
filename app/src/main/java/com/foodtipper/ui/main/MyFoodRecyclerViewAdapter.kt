@@ -6,15 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.foodtipper.R
+import com.foodtipper.model.FoodItem
 
-import com.foodtipper.ui.main.dummy.DummyContent.DummyItem
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem].
  * TODO: Replace the implementation with code for your data type.
  */
 class MyFoodRecyclerViewAdapter(
-    private val values: List<DummyItem>,
+    private val values: List<FoodItem>,
     private val onItemClick: (String) -> Unit
 ) : RecyclerView.Adapter<MyFoodRecyclerViewAdapter.ViewHolder>() {
 
@@ -29,7 +29,7 @@ class MyFoodRecyclerViewAdapter(
         holder.idView.text = item.id
         holder.contentView.text = item.content
         holder.itemView.setOnClickListener{
-            onItemClick(item.id)
+            onItemClick(item.id!!)
         }
     }
 
