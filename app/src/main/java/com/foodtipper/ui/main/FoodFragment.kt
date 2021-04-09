@@ -14,11 +14,14 @@ import androidx.navigation.fragment.findNavController
 import com.foodtipper.R
 import com.foodtipper.model.FoodItem
 import com.foodtipper.ui.detail.DetailActivity
+import javax.inject.Inject
 
 /**
  * A fragment representing a list of Items.
  */
 class FoodFragment : Fragment() {
+    @Inject
+    lateinit var mainPresenter: MainPresenter
 
     private var columnCount = 1
 
