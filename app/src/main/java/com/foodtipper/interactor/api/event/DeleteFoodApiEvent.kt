@@ -1,4 +1,6 @@
 package com.foodtipper.interactor.api.event
 
-class DeleteFoodApiEvent {
+import com.foodtipper.interactor.Event
+
+class DeleteFoodApiEvent: Event() {
 }

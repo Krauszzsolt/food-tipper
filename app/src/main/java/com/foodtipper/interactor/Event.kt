@@ -1,6 +1,5 @@
 package com.foodtipper.interactor
 
-object Event {
+open class Event {
     var exception: Throwable? = null
-    var success: Boolean = true
 }

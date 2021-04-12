@@ -1,4 +1,6 @@
 package com.foodtipper.interactor.api.event
 
-class PostFoodApiEvent {
+import com.foodtipper.interactor.Event
+
+class PostFoodApiEvent: Event() {
 }

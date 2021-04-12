@@ -38,7 +38,7 @@ class FoodFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-       var list =  listOf(FoodItem("asd","asd","asd"),FoodItem("asd","asd","asd"),FoodItem("asd","asd","asd"),FoodItem("asd","asd","asd"))
+       var list =  listOf(FoodItem("Teszt","Teszt","Teszt"),FoodItem("Teszt","Teszt","Teszt"),FoodItem("Teszt","Teszt","Teszt"),FoodItem("Teszt","Teszt","Teszt"))
         val view = inflater.inflate(R.layout.fragment_food_list, container, false)
 
         // Set the adapter

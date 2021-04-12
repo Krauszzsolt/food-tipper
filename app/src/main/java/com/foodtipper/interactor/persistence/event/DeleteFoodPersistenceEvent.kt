@@ -1,4 +1,6 @@
 package com.foodtipper.interactor.persistence.event
 
-class DeleteFoodPersistenceEvent {
+import com.foodtipper.interactor.Event
+
+class DeleteFoodPersistenceEvent : Event(){
 }

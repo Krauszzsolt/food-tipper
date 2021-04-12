@@ -1,10 +1,8 @@
 package com.foodtipper.ui.edit
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.foodtipper.R
-import com.foodtipper.ui.main.FoodFragment
-import com.foodtipper.ui.main.MainPresenter
 import javax.inject.Inject
 
 class EditActivity : AppCompatActivity(), EditScreen {
