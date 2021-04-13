@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.foodtipper.R
 import com.foodtipper.model.FoodItem
 import com.foodtipper.ui.detail.DetailActivity
