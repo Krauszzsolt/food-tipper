@@ -46,6 +46,11 @@ dependencies {
     implementation daggerDependencies.dagger
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    
+    implementation roomDependencies.room
+    kapt roomDependencies.compiler
+    implementation roomDependencies.kotlin_extension
+
 
     implementation toolkitDependencies.okhttp
     implementation toolkitDependencies.logging

@@ -6,6 +6,7 @@ import com.foodtipper.interactor.api.event.GetFoodDetailApiEvent
 import com.foodtipper.interactor.api.event.GetFoodsApiEvent
 import com.foodtipper.interactor.api.event.PostFoodApiEvent
 import com.foodtipper.model.FoodDetails
+import com.foodtipper.model.FoodItem
 import com.foodtipper.network.FoodApi
 import org.greenrobot.eventbus.EventBus
 import javax.inject.Inject
@@ -33,8 +34,7 @@ class ApiInteractor @Inject constructor(private var foodApi: FoodApi) {
             val response = foodApi.getFoods().execute();
 
             event.foods = response.body()?.foods;
-//                listOf(FoodItem("Teszt", "Teszt", "Teszt"), FoodItem("Teszt", "Teszt", "Teszt"))
-//
+
             Log.d("Response", response.body().toString())
             EventBus.getDefault().post(event)
 
@@ -44,7 +44,7 @@ class ApiInteractor @Inject constructor(private var foodApi: FoodApi) {
         }
     }
 
-    fun editFood() {
+    fun editFood(food: FoodItem) {
         val event = PostFoodApiEvent()
         try {
             EventBus.getDefault().post(event)
@@ -54,7 +54,7 @@ class ApiInteractor @Inject constructor(private var foodApi: FoodApi) {
         }
     }
 
-    fun deleteFood() {
+    fun deleteFood(id: String) {
         val event = DeleteFoodApiEvent()
         try {
 

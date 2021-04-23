@@ -21,6 +21,7 @@ class MainPresenter  @Inject constructor(private val executor: Executor, private
         EventBus.getDefault().unregister(this)
         super.detachScreen()
     }
+
     fun showtestInjection(text: String) {
         screen?.testInjection(text)
     }

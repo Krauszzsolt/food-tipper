@@ -6,15 +6,20 @@ import com.foodtipper.interactor.persistence.event.GetFoodsPersistenceEvent
 import com.foodtipper.interactor.persistence.event.PostFoodPersistenceEvent
 import com.foodtipper.model.FoodDetails
 import com.foodtipper.model.FoodItem
+import com.foodtipper.persistence.FoodDAO
+import com.foodtipper.persistence.FoodEntity
 import org.greenrobot.eventbus.EventBus
 
-class PersistenceInteractor {
+class PersistenceInteractor(private val foodDAO: FoodDAO) {
 
     fun getFoodDetail(id: String) {
         val event = GetFoodDetailPersistenceEvent()
 
         try {
-            event.food = FoodDetails(id, "Teszt", "Teszt", "Teszt")
+            val food = foodDAO.getFoodById(id)
+            if (food != null) {
+                event.food = FoodDetails(food.foodId, food.name, food.url)
+            }
             EventBus.getDefault().post(event)
 
         } catch (e: Exception) {
@@ -27,8 +32,8 @@ class PersistenceInteractor {
         val event = GetFoodsPersistenceEvent()
 
         try {
-            event.foods =
-                listOf(FoodItem("Teszt", "Teszt", "Teszt"), FoodItem("Teszt", "Teszt", "Teszt"))
+            val foods = foodDAO.loadAllFoods()
+            event.foods = foods.map { FoodItem(it.foodId, it.name, it.url) }
             EventBus.getDefault().post(event)
 
         } catch (e: Exception) {
@@ -37,9 +42,16 @@ class PersistenceInteractor {
         }
     }
 
-    fun editFood() {
+    fun editFood(food: FoodItem) {
         val event = PostFoodPersistenceEvent()
         try {
+            if (food.id != null) {
+                foodDAO.insertFood(FoodEntity(food.id, food.name!!, food.url!!))
+
+            } else {
+                foodDAO.insertFood(FoodEntity(null, food.name!!, food.url!!))
+
+            }
             EventBus.getDefault().post(event)
         } catch (e: Exception) {
             event.exception = e
@@ -47,10 +59,10 @@ class PersistenceInteractor {
         }
     }
 
-    fun deleteFood() {
+    fun deleteFood(id: String) {
         val event = DeleteFoodPersistenceEvent()
         try {
-
+            foodDAO.deleteFoodById(id)
             EventBus.getDefault().post(event)
         } catch (e: Exception) {
             event.exception = e
