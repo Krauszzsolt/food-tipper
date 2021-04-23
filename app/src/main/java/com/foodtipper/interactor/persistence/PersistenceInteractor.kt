@@ -18,7 +18,7 @@ class PersistenceInteractor(private val foodDAO: FoodDAO) {
         try {
             val food = foodDAO.getFoodById(id)
             if (food != null) {
-                event.food = FoodDetails(food.foodId, food.name, food.url)
+                event.food = FoodDetails(food.foodId.toString(), food.name, food.url)
             }
             EventBus.getDefault().post(event)
 
@@ -33,7 +33,7 @@ class PersistenceInteractor(private val foodDAO: FoodDAO) {
 
         try {
             val foods = foodDAO.loadAllFoods()
-            event.foods = foods.map { FoodItem(it.foodId, it.name, it.url) }
+            event.foods = foods.map { FoodItem(it.foodId.toString(), it.name, it.url) }
             EventBus.getDefault().post(event)
 
         } catch (e: Exception) {
@@ -46,7 +46,7 @@ class PersistenceInteractor(private val foodDAO: FoodDAO) {
         val event = PostFoodPersistenceEvent()
         try {
             if (food.id != null) {
-                foodDAO.insertFood(FoodEntity(food.id, food.name!!, food.url!!))
+                foodDAO.insertFood(FoodEntity(food.id?.toInt(), food.name!!, food.url!!))
 
             } else {
                 foodDAO.insertFood(FoodEntity(null, food.name!!, food.url!!))
