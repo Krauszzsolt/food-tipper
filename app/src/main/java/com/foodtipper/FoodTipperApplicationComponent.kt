@@ -2,6 +2,7 @@ package com.foodtipper
 
 import com.foodtipper.interactor.InteractorModule
 import com.foodtipper.network.NetworkModule
+import com.foodtipper.persistence.PersistenceModule
 import com.foodtipper.ui.UIModule
 import com.foodtipper.ui.detail.DetailActivity
 import com.foodtipper.ui.detail.DetailFragment
@@ -13,7 +14,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [UIModule::class, NetworkModule::class, InteractorModule::class])
+@Component(modules = [UIModule::class, NetworkModule::class, InteractorModule::class,PersistenceModule::class,])
 interface FoodTipperApplicationComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(foodFragment: FoodFragment)

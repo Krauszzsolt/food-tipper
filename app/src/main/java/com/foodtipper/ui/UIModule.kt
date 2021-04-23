@@ -1,6 +1,7 @@
 package com.foodtipper.ui
 
 import android.content.Context
+import com.foodtipper.interactor.api.ApiInteractor
 import com.foodtipper.ui.detail.DetailPresenter
 import com.foodtipper.ui.edit.EditPresenter
 import com.foodtipper.ui.main.MainPresenter
@@ -19,7 +20,8 @@ class UIModule(private val context: Context) {
 
     @Provides
     @Singleton
-    fun mainPresenter() = MainPresenter()
+    fun mainPresenter(executor: Executor, foodInteractor: ApiInteractor) =
+        MainPresenter(executor, foodInteractor)
 
     @Provides
     @Singleton

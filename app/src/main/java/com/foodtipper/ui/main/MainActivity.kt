@@ -11,10 +11,9 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainScreen{
+class MainActivity : AppCompatActivity(){
 
-    @Inject
-    lateinit var mainPresenter: MainPresenter
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,19 +29,10 @@ class MainActivity : AppCompatActivity(), MainScreen{
         supportFragmentManager.beginTransaction().replace(R.id.fragment, FoodFragment.newInstance(1)).commit()
 
         button.setOnClickListener {
-            mainPresenter.showtestInjection("Test message")
+//            mainPresenter.showtestInjection("Test message")
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        mainPresenter.attachScreen(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        mainPresenter.detachScreen()
-    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -60,8 +50,4 @@ class MainActivity : AppCompatActivity(), MainScreen{
         }
     }
 
-    override fun testInjection(text: String) {
-        textView2.text = text;
-
-    }
 }
